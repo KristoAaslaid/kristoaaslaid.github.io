@@ -5,11 +5,11 @@ import Event from '../Events/Event.js';
 
 
 let state = {}
-// Varastatud kood, lel, vajab cleanupi, praegu tho don't care, it works tekstidega
+
 
 function startGame() {
-    // state = {}
-    // showPassage(1)
+    state = {}
+    showPassage(1)
 }
 
 function showPassage(PassageIndex) {
