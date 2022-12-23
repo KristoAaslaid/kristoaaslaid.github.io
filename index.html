@@ -1,7 +1,136 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/stylesheet.css"  >
+    <meta charset="UTF-8">
+    <title>Planet</title>
+    <script type="module" src="index.js" ></script>
+    <script>
+        const closeModal = () => document.getElementById('modal').style.display = 'none'
+    </script>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>Palun tööta, pls Jumal.</p>
+<div class = "color-palette-container">
+    <input id="bg-color-input" type="color"><label for="bg-color-input">BG COLOR</label>
+</div>
+<div class="settings"><img src="./img/settings/settings-icon.png?" alt="Settings" width="50" height="50"></div>
+<!--<div id="modal-passage" class="modal-overlay">
+    <div class="modal-content-text">
+        <div id="modal-text" class="big-text"></div>
+        <div id="option-ButtonState" class="option-ButtonState"></div>
+    </div>
+</div>-->
+<div class = "global-component">
+    <div id="shop-component"></div>
+    <div class = "console-container char-creation-text" id="console-container">
+        <div class="create-char-container" id="create-char-container">
+            <h1>Untitled World DEMO</h1>
+            <h3>Character Creation:</h3>
+            <span id="error"></span>
+            <label class="char-creation-labels"  for="character-name-input">Name:</label>
+            <input class="char-creation-labels" type="text" id="character-name-input">
+            <fieldset class="char-creation-containers" >
+                <legend >Choose your characters gender:</legend>
+                <div class="char-creation-labels">
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label>
+                </div>
+                <div >
+                    <input  type="radio" id="male" name="gender" value="male">
+                    <label for="male">Male</label>
+                </div>
+            </fieldset>
+            <fieldset class="char-creation-containers" >
+                <legend >Choose your characters job:</legend>
+                <div>
+                    <input type="radio" id="private-military-contractor" name="job" value="privateMilitaryContractor"
+                           >
+                    <label for="private-military-contractor">Private Military Contractor</label>
+                </div>
+                <div>
+                    <input type="radio" id="miner" name="job" value="miner">
+                    <label for="miner">Miner</label>
+                </div>
+                <div>
+                    <input type="radio" id="think-tank-assistant" name="job" value="thinkTankAssistant">
+                    <label for="think-tank-assistant">Think Tank Assistant</label>
+                </div>
+            </fieldset>
+            <button id="start-game-button" class = "start-game-btn">Start Game</button>
+            <div id="start-game-error"></div>
+        </div>
+    </div>
+    <div class = "map-component" id="map-component">
+        <div id = "modal" onclick="closeModal()" class="modal-overlay">
+            <div class="modal-content">
+                <div id="tile-name" class="modal-header">
+                    Tile description
+                </div>
+                <div class="cords-container">
+                    <div class="cords"><label for="tile-x-cords">x:</label><div id="tile-x-cords"></div></div>
+                    <div class="cords"><label for="tile-y-cords">y:</label><div id="tile-y-cords"></div></div>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-content" ></div>
+                </div>
+                <div class="modal-footer">
+                    <img id="landing-button" class="modal-btn" src="./img/landing.png" width="45" height="45" alt="landing">
+                    <img id="take-off-button" class="modal-btn" src="./img/take-off.png" width="45" height="45" alt="take off">
+                    <img id="go-to-button" class="modal-btn" src="./img/character/walk.png" width="45" height="45" alt="go to">
+                    <img id="activity-button" class="modal-btn" src="./img/people.png" width="45" height="45" alt="activity">
+                    <img id="enter-city-button" class="modal-btn" src="./img/enter-city.png" width="30" height="30" alt="enter">
+                    <img id="shop-button" class="modal-btn" src="./img/city/enter-building.png/" width="30" height="30" alt="enter shop">
+                </div>
+            </div>
+        </div>
+        <div class="world-description">
+            <label class="beautiful-text" for="region-name">Region name:</label>
+            <input id="region-name" type="text"  placeholder="Totally original name"/>
+            <label class="beautiful-text" for="story">Region description:</label>
+            <textarea id="story" placeholder="Put your story here..." rows="5" cols="33"></textarea>
+            <button class = "big-beautiful-button" id="generate">Generate</button>
+        </div>
+        <div class="beautiful-text" id="landscape-description"></div>
+        <div class="over-landscape-n-next-area-container" id="next-area-container">
+            <img class="next-area modal-btn" style="display:none" id="next-area-left" src="./img/next-area-left.png" alt="next area left">
+            <div class="landscape-container" id="landscape-container">
+                <img src="img/world.png" alt="Some kind of planet">
+            </div>
+            <img class="next-area modal-btn" style="display:none" id="next-area-right" src="./img/next-area-right.png" alt="next area right">
+        </div>
+        <img id="exit-city-button" style="display:none" class="modal-btn" src="./img/exit-city.png" width="100" height="100" alt="landing">
+    </div>
+    <div class="info-component" id="info-component">
+        <div class = "character-container">
+            <div class ="character-name">
+                <span id ="credit">0 credits</span>
+                <img src="./img/space-man.png" alt="god" width="50" height="50" id="char-avatar">
+                <label class="beautiful-text" for="character-name">Character name:</label>
+                <div id="character-name">Anon</div>
+            </div>
+            <div class ="stats-n-params-container">
+                <div class ="character-stats-n-params" id="character-stats">
+                    <div class="character-stat" id="str">STR: no data</div>
+                    <div class="character-stat" id="dex">DEX: no data</div>
+                    <div class="character-stat" id="int">INT: no data</div>
+                    <div class="character-stat" id="agi">AGI: no data</div>
+                    <div class="character-stat" id="cha">CHA: no data</div>
+                </div>
+                <div class ="character-stats-n-params" id="character-params">
+                    <div class="character-stat" id="hp">HP: no data</div>
+                    <div class="character-stat" id="def">DEF: no data</div>
+                    <div class="character-stat" id="atk">ATK: no data</div>
+                    <div class="character-stat" id="spd">SPD: no data</div>
+                </div>
+            </div>
+        </div>
+        <div  id="button-container" class="button-container">
+            <button class="ji-buttons" id="journal">Journal</button>
+            <button class="ji-buttons" id="inventory">Inventory</button>
+        </div>
+        <div id = "ji-container" class = "journal-inventory-container"></div>
+    </div>
+</div>
+<footer class="footer"><div class="beautiful-text">Powered by <a href="https://icons8.com/">Icons8</a></div></footer>
 </body>
 </html>
